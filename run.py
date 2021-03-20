@@ -5,8 +5,7 @@
 
 
 import selenium.webdriver as webdriver
-import urllib, requests
-from bs4 import BeautifulSoup
+import urllib
 
 from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.common.keys import Keys
@@ -22,39 +21,34 @@ import sys
 import json   
 
 
-# In[33]:
-
-
-def get_html(url):
-  html = urlopen(url)
-  return html.read()
-
-def read_html(url):
-  bs = BeautifulSoup(get_html(url),"html.parser")
-  return bs
 
 def make_search_query(url, term):
-  return url + search + urllib.parse.quote(term)
+    
+    """The function computes the relevant search query string.
 
+    Args:
+        url (str): Address of the main page of the website to scrap. (https://www.nyse.com)
+        term (str): Entity name to be scrapped. (Eg: Wells Fargo & Company)
 
-def find_inputs_from_html(bs):
-  search = bs.find_all("input")
-  for result in search:
-    print(result)
+    Returns:
+       search_query (str) : resultant URL to be parsed
+    """
+    search_query = url + search + urllib.parse.quote(term)
+    return search_query
 
-
-# In[3]:
-
-
-url = "https://www.nyse.com"
-search = "/site-search?q="
-
-
-# In[38]:
 
 
 def get_results(link, term):
+    
+    """The function scrapes the information corresponding to the quote and last-datetime of the input entity term.
 
+    Args:
+        link (str): URL of the page to scrape the information from. 
+        term (str): Entity name to be scrapped. (Eg: Wells Fargo & Company)
+
+    Returns:
+       result (dict) : a dictionary mapping datapoints to their corresponding extracted information. 
+    """
     result = {}
     result["search_term"] = term
     result["link"] = link
@@ -86,6 +80,16 @@ def get_results(link, term):
     return result
 
 def find_best_match(term, candidate_results):
+    """The function sorts the search results with repective to their levenshtein distances from the Entity term. 
+
+    Args:
+        term (str): Entity name to be scrapped. (Eg: Wells Fargo & Company)
+        candidate_results (selenium.webelement): A selenium webelement which contains a list of all relavant results for the given Entity 
+        name.
+        
+    Returns:
+       best_match (tuple) : The tuple (distance, url) corresponding to the most relevant search result.
+    """
     
     results = []
     
@@ -98,7 +102,15 @@ def find_best_match(term, candidate_results):
     return best_match
 
 
-# In[39]:
+global url
+global search
+
+url = "https://www.nyse.com"
+search = "/site-search?q="
+
+
+# In[38]:
+
 
 
 if __name__ == "__main__":
