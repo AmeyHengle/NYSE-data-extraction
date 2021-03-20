@@ -22,9 +22,9 @@ After getting the search results, I sort them using levenshtein distance to get 
 3. Collect the results from the results folder.
 
 ## Requirements:
-selenium
-urllib
-python-Levenshtein
+selenium <br>
+urllib <br>
+python-Levenshtein <br>
 json
 
 
