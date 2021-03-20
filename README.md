@@ -12,7 +12,7 @@ b. Last Trade Time.
 
 For dynamically parsing the contents of nyse website, I use selenium, a python implementation of bindings for the Selenium WebDriver. Using selenium, the program is able to automatically navigate to the results page corresponding to the input entity name. 
 
-After getting the search results, I sort them using levenshtein distance to get the most appropriate match for the input search query. The best match corresponds to the lowest levenshtein distance. For example, the search query ‘WFC: Wells Fargo & Company’ will get mapped to the result ‘WELLS FARGO & COMPANY’  instead of WELLS FARGO & COMPANY 7.5% PERP CONV PRF CLS 'A' SERIES 'L'. 
+After getting the search results, I sort them using levenshtein distance to get the most appropriate match for the input search query. The best match corresponds to the lowest levenshtein distance. For example, the search query **‘WFC: Wells Fargo & Company’** will get mapped to the result **‘WELLS FARGO & COMPANY’**  instead of **WELLS FARGO & COMPANY 7.5% PERP CONV PRF CLS 'A' SERIES 'L'**. 
 
 ## Usage:
 
