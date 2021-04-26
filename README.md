@@ -1,4 +1,4 @@
-# Task 2: Scrape data from the NYSE website
+# Task: To build a generic web-scraper to extract data from the NYSE website. 
 
 
 ## Problem Statement:
